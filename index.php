@@ -7,7 +7,7 @@ mysqli_set_charset($conn, "utf8");
 <html>
 
 <head>
-  <title>Quản lý sinh viên TMU</title>
+  <title>Quản lý sinh viên PTIT</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -57,11 +57,14 @@ document.getElementById('panel').style.display = 'none';
   <?php } ?>
 
   <?php
-  if ($_GET["page"] && $_GET["page"] == "admin")
-    include "admin.php";
-  if ($_GET["page"] && $_GET["page"] == "login")
-    include "login.php";
-  ?>
+$page = isset($_GET["page"]) ? $_GET["page"] : "";
+if ($page == "admin")
+  include "admin.php";
+elseif ($page == "login")
+  include "login.php";
+else
+  include "login.php"; // Hiển thị trang đăng nhập mặc định
+?>
 </body>
 
 </html>

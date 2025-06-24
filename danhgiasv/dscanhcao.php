@@ -63,26 +63,26 @@
                 <input onclick="window.location='dscanhcao.php?id=<?php echo '1' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 1 - 2019">
+                       value="Học kỳ 1 - 2024">
                 <input onclick="window.location='dscanhcao.php?id=<?php echo '2' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 2 - 2019">
+                       value="Học kỳ 2 - 2024">
                 <input onclick="window.location='dscanhcao.php?id=<?php echo '3' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 1 - 2020">
+                       value="Học kỳ 1 - 2025">
                 <input onclick="window.location='dscanhcao.php?id=<?php echo '4' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 2 - 2020">
+                       value="Học kỳ 2 - 2025">
 
                 <div class="head_title">
                     <h1>Danh sách cảnh cáo học kỳ <?php 
                     if ($hk % 2 != 0 ){
-                    echo "1 năm học ".(2019 + (int)($hk / 2));
+                    echo "1 năm học ".(2024 + (int)($hk / 2));
                     }
-                    else echo "2 năm học ".(2019 + ($hk / 2) - 1);
+                    else echo "2 năm học ".(2024 + ($hk / 2) - 1);
                     ?></h1> <br>
                 </div>
                 <div class="table-wrapper">

@@ -2,8 +2,7 @@
     $conn = mysqli_connect("localhost", "root", "", "qlsv") or die("Connection failed !");
     mysqli_set_charset($conn, 'utf8');
     $id = $_GET["id"];
-    if ($id){
-        
+    if ($id){       
         $result = mysqli_query($conn, "select *from lop join sinhvien on sinhvien.MaLop=lop.MaLop 
                                         join nganh on lop.MaNganh = nganh.MaNganh where MaSV='$id'");
          $item = mysqli_fetch_array($result);
@@ -11,7 +10,7 @@
         join nganh on nganh.MaNganh = sinhvien.MaNganh where MaSV='$id'");
         $itemnull = mysqli_fetch_array($resultnull);
     }
-
+    #xử lý biểu mẫu chỉnh sửa
     if (isset($_POST['edit_student']))
     {
         $data['NgaySinh'] = isset($_POST['NgaySinh']) ? $_POST['NgaySinh'] : '';
@@ -25,7 +24,7 @@
         $data['Email'] = isset($_POST['Email']) ? $_POST['Email'] : '';
         $data['DoiTuongMG'] = isset($_POST['DoiTuongMG']) ? $_POST['DoiTuongMG'] : '';
         
-        // Validate thong tin
+        // kiem tra thong tin
         $errors = array();
         if (empty($data['NgaySinh'])){
             $errors['NgaySinh'] = 'Chưa nhập ngày sinh sinh viên';
@@ -102,13 +101,12 @@
         <div class="section-contain">
             <?php include("../menu.php"); ?>
             <div id="showFunction">
-                <form action=""
-                      method="POST">
+                <form id="editStudentForm">
+                    <input type="hidden" name="MaSV" value="<?php echo $id; ?>">
                     <div class="table-wrapper">
                         <?php if($item['MaLop'] == NULL){ ?>
                         <table class="fl-table tt">
                             <thead>
-
                                 <tr>
                                     <th>Mã sinh viên</th>
                                     <th>Họ tên</th>
@@ -139,7 +137,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['NgaySinh']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['NgaySinh'])) echo $errors['NgaySinh']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -150,14 +147,14 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['QueQuan']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['QueQuan'])) echo $errors['QueQuan']; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Giới tính</th>
                                             <td>
                                                 <select name="GioiTinh"
-                                                        class="edit_diem">
+                                                        class="edit_diem"
+                                                        required>
                                                     <option value="<?php echo $itemnull['GioiTinh']; ?>">
                                                         <?php echo $itemnull['GioiTinh']; ?></option>
                                                     <option value="Nam">Nam</option>
@@ -173,7 +170,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['DanToc']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['DanToc'])) echo $errors['DanToc']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -184,7 +180,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['TonGiao']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['TonGiao'])) echo $errors['TonGiao']; ?>
                                             </td>
                                         </tr>
                                     </table>
@@ -199,7 +194,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['SoCMT']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['SoCMT'])) echo $errors['SoCMT']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -210,7 +204,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['NoiCapCMT']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['NoiCapCMT'])) echo $errors['NoiCapCMT']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -221,18 +214,16 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['SDT']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['SDT'])) echo $errors['SDT']; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
                                             <td>
-                                                <input type="text"
+                                                <input type="email"
                                                        name="Email"
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['Email']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['Email'])) echo $errors['Email']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -243,16 +234,12 @@
                                                        class="edit_diem"
                                                        value="<?php echo $itemnull['DoiTuongMG']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['DoiTuongMG'])) echo $errors['DoiTuongMG']; ?>
                                             </td>
                                         </tr>
                                     </table>
-
                                 </div>
                             </div>
-                            <button name="edit_student"
-                                    onclick="return confirm('Bạn có chắc muốn sửa không?');"
-                                    class="btnSave">Xác nhận</button><br><br>
+                            <button type="submit" class="btnSave">Xác nhận</button><br><br>
                         </div>
                         <?php }else{?>
                         <table class="fl-table tt">
@@ -288,7 +275,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['NgaySinh']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['NgaySinh'])) echo $errors['NgaySinh']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -299,14 +285,14 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['QueQuan']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['QueQuan'])) echo $errors['QueQuan']; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Giới tính</th>
                                             <td>
                                                 <select name="GioiTinh"
-                                                        class="edit_diem">
+                                                        class="edit_diem"
+                                                        required>
                                                     <option value="<?php echo $item['GioiTinh']; ?>">
                                                         <?php echo $item['GioiTinh']; ?></option>
                                                     <option value="Nam">Nam</option>
@@ -322,7 +308,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['DanToc']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['DanToc'])) echo $errors['DanToc']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -333,7 +318,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['TonGiao']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['TonGiao'])) echo $errors['TonGiao']; ?>
                                             </td>
                                         </tr>
                                     </table>
@@ -348,7 +332,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['SoCMT']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['SoCMT'])) echo $errors['SoCMT']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -359,7 +342,6 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['NoiCapCMT']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['NoiCapCMT'])) echo $errors['NoiCapCMT']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -370,18 +352,16 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['SDT']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['SDT'])) echo $errors['SDT']; ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
                                             <td>
-                                                <input type="text"
+                                                <input type="email"
                                                        name="Email"
                                                        class="edit_diem"
                                                        value="<?php echo $item['Email']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['Email'])) echo $errors['Email']; ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -392,26 +372,100 @@
                                                        class="edit_diem"
                                                        value="<?php echo $item['DoiTuongMG']; ?>"
                                                        required />
-                                                <?php if (!empty($errors['DoiTuongMG'])) echo $errors['DoiTuongMG']; ?>
                                             </td>
                                         </tr>
                                     </table>
-
                                 </div>
                             </div>
-                            <button name="edit_student"
-                                    onclick="return confirm('Bạn có chắc muốn sửa không?');"
-                                    class="btnSave">Xác nhận</button><br><br>
+                            <button type="submit" class="btnSave">Xác nhận</button><br><br>
                         </div>
                         <?php }?>
-
                     </div>
-
                 </form>
             </div>
         </div>
     </section>
     <?php include("../footer.php"); ?>
+
+    <script>
+    $(document).ready(function() {
+        $('#editStudentForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            var isValid = true;
+            $(this).find('input[required], select[required]').each(function() {
+                if (!$(this).val()) {
+                    isValid = false;
+                    $(this).addClass('error');
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            if (!isValid) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
+            }
+
+            // Validate email format
+            var email = $('input[name="Email"]').val();
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Email không đúng định dạng!');
+                return;
+            }
+
+            // Collect form data
+            var formData = $(this).serialize();
+            formData += '&action=edit';
+
+            // Send AJAX request
+            $.ajax({
+                url: 'ajax_handler.php',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        window.location.href = 'showsinhvien.php';
+                    } else {
+                        alert(response.message);
+                        if (response.errors) {
+                            // Hiển thị lỗi cụ thể cho từng trường
+                            for (var field in response.errors) {
+                                $('input[name="' + field + '"], select[name="' + field + '"]')
+                                    .addClass('error')
+                                    .after('<span class="error-message">' + response.errors[field] + '</span>');
+                            }
+                        }
+                    }
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra khi xử lý yêu cầu!');
+                }
+            });
+        });
+
+        // Xóa thông báo lỗi khi người dùng bắt đầu nhập
+        $('input, select').on('input change', function() {
+            $(this).removeClass('error');
+            $(this).next('.error-message').remove();
+        });
+    });
+    </script>
+
+    <style>
+    .error {
+        border: 1px solid red !important;
+    }
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-left: 5px;
+    }
+    </style>
 </body>
 
 </html>

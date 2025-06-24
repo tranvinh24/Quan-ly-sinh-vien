@@ -18,8 +18,8 @@
         <img src="logo.png"
              alt=""
              style="width: 75px; height: 75px">
-        <h3>Trường Đại học Thương Mại</h3>
-        <h4>Đăng nhập quản trị viên</h4>
+        <h3>Học viện công nghệ bưu chính viễn thông</h3>
+        <h4>Đăng nhập</h4>
         <hr style="width: 340px;">
         <input type="text"
                class="name"

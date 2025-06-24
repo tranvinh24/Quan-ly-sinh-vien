@@ -44,19 +44,19 @@
                 <input onclick="window.location='dskhenthuong.php?id=<?php echo '1' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 1 - 2019">
+                       value="Học kỳ 1 - 2024">
                 <input onclick="window.location='dskhenthuong.php?id=<?php echo '2' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 2 - 2019">
+                       value="Học kỳ 2 - 2024">
                 <input onclick="window.location='dskhenthuong.php?id=<?php echo '3' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 1 - 2020">
+                       value="Học kỳ 1 - 2025">
                 <input onclick="window.location='dskhenthuong.php?id=<?php echo '4' ?>'"
                        type="button"
                        class="btn-submit-css"
-                       value="Học kỳ 2 - 2020">
+                       value="Học kỳ 2 - 2025">
                 <div class="head_title">
                     <h1>Danh sách khen thưởng học kì <?php 
                     if ($hk % 2 != 0 ){

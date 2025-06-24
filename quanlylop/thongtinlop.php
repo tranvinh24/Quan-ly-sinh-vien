@@ -1,5 +1,5 @@
 <?php
-    //session_start();
+    session_start();
     $id = $_SESSION['user'];
     $conn = mysqli_connect("localhost", "root", "", "qlsv") or die("Connection failed !");
     mysqli_set_charset($conn, 'utf8');

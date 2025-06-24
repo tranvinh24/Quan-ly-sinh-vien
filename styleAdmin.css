@@ -6,7 +6,7 @@
 }
 
 header {
-    background-color: #069;
+    background-color: rgb(153, 0, 51);
 }
 
 .Group1 {
@@ -94,7 +94,7 @@ nav .group-menu ul li a {
 
 nav {
     padding: 10px;
-    background-color: #007dbb;
+    background-color: rgb(153, 0, 51);
     height: 40px;
 }
 
@@ -239,7 +239,7 @@ section #menu ul li a i{
 }
 footer{
     border-top: 5px solid yellow;
-    background-color: #007dbb;
+    background-color: rgb(153, 0, 51);
     clear: both;
 }
 .logout{

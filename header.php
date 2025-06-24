@@ -11,7 +11,7 @@
           href="styleAdmin.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <title>Quản lý sinh viên TMU</title>
+    <title>Quản lý sinh viên PTIT</title>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
@@ -20,11 +20,11 @@
         <div class="title">
             <div class="Group1">
                 <div class="logo">
-                    <img src="../imgs/logo-dhtm-3.png"
+                    <img src="../imgs/logo.png"
                          alt="">
                 </div>
                 <div class="img-content">
-                    <img src="../imgs/content.png"
+                    <img src="../imgs/content2.png"
                          alt="">
                 </div>
             </div>

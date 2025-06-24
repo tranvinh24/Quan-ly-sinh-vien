@@ -81,9 +81,9 @@
                     $svcc = mysqli_query($conn, "select * from canhcao where MaSV = {$masv}");
                     while ($j = mysqli_fetch_array($svcc)){
                         if ($j['HocKy'] % 2 != 0 ){
-                            $string = "1 năm học ".(2020 + (int)($j['HocKy'] / 2));
+                            $string = "1 năm học ".(2024 + (int)($j['HocKy'] / 2));
                         }
-                        else $string = "2 năm học ".(2020 + ($j['HocKy'] / 2) - 1);
+                        else $string = "2 năm học ".(2024 + ($j['HocKy'] / 2) - 1);
                         echo "+ Học kỳ ".$string.": ".$j['LyDo'];
                     ?> <br> <?php
                     }

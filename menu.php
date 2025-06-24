@@ -15,7 +15,7 @@
           href="styleAdmin.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <title>Quản lý sinh viên TMU</title>
+    <title>Quản lý sinh viên PTIT</title>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
